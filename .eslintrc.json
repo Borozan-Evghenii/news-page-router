@@ -13,6 +13,7 @@
   "ignorePatterns": [
     "dist",
     "node_modules/",
+    ".next",
     ".eslintrc.cjs",
     "*.config.js",
     "*.config.ts",
@@ -62,10 +63,7 @@
     "no-restricted-syntax": 0,
     "@typescript-eslint/no-loop-func": 0,
     // 'sort-keys': [1, 'asc', { natural: true, allowLineSeparatedGroups: true }],
-    "react/jsx-filename-extension": [
-      2,
-      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
-    ],
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "react/jsx-sort-props": [
       2,
       {
@@ -83,14 +81,7 @@
     "import/order": [
       2,
       {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "index"
-        ],
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
         "newlines-between": "always",
         "pathGroups": [
           {

@@ -7,19 +7,24 @@
     "prebuild": "npm run lint",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "format": "prettier --write **/*.{ts,tsx,css}",
     "prepare": "husky"
   },
   "dependencies": {
+    "axios": "^1.7.7",
     "next": "14.2.14",
     "react": "^18",
     "react-dom": "^18"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
+    "utils/*.{js,jsx,ts,tsx}": [
       "yarn format",
-      "yarn lint --fix"
+      "yarn lint"
+    ],
+    "pages/*.{js,jsx,ts,tsx}": [
+      "yarn format",
+      "yarn lint"
     ]
   },
   "devDependencies": {

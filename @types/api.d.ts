@@ -1,5 +1,3 @@
-import { AxiosRequestConfig } from 'axios';
-
 type RequestConfig<Params = undefined> = Params extends undefined
   ? { config?: import('axios').AxiosRequestConfig }
   : { params: Params; config?: import('axios').AxiosRequestConfig };
@@ -16,16 +14,14 @@ type NewsDto = {
 };
 
 type LanguagesDto = {
-  [string]: string;
+  [key: string]: string;
 };
 
 type RegionDto = {
-  [string]: string;
+  [key: string]: string;
 };
 
-type CategoryDto = {
-  [string]: string;
-};
+type CategoryDto = string;
 
 type ApiNewsResponseDto = {
   status: string;
@@ -42,5 +38,11 @@ type ApiLanguagesResponseDto = {
 type ApiRegionsResponseDto = {
   status: string;
   languages: RegionDto[];
+  description: string;
+};
+
+type ApiCategoryResponseDto = {
+  status: string;
+  categories: CategoryDto[];
   description: string;
 };

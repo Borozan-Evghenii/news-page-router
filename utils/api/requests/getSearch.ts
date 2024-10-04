@@ -1,5 +1,4 @@
-import { RequestConfig, ApiNewsResponseDto } from '@/@types/api';
-import axios from 'axios';
+import { api } from '../instance';
 
 type GetSearchParams = {
   language?: string;
@@ -12,9 +11,10 @@ type GetSearchParams = {
 
 type GetSearchConfig = RequestConfig<GetSearchParams>;
 
-export const getSearch = (requestConfig?: GetSearchConfig) => {
-  return axios.get<ApiNewsResponseDto>('/search', {
+export const getSearch = async (requestConfig?: GetSearchConfig) =>
+  api.get<ApiNewsResponseDto>('/search', {
     ...requestConfig?.config,
-    params: { ...requestConfig?.config?.params, ...requestConfig?.params }
+    params: {
+      ...requestConfig?.params
+    }
   });
-};

@@ -1,8 +1,6 @@
-import { ApiRegionsResponseDto, RequestConfig } from '@/@types/api';
-import axios from 'axios';
+import { api } from '../instance';
 
-export const getRegions = (requestConfig?: RequestConfig) => {
-  return axios.get<ApiRegionsResponseDto>('/available/regions', {
+export const getRegions = async (requestConfig?: RequestConfig) =>
+  api.get<ApiRegionsResponseDto>('/available/regions', {
     ...requestConfig?.config
   });
-};

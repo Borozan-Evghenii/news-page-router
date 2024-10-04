@@ -1,8 +1,6 @@
-import { ApiLanguagesResponseDto, RequestConfig } from '@/@types/api';
-import axios from 'axios';
+import { api } from '../instance';
 
-export const getLanguages = (requestConfig?: RequestConfig) => {
-  return axios.get<ApiLanguagesResponseDto>('/available/languages', {
+export const getLanguages = async (requestConfig?: RequestConfig) =>
+  api.get<ApiLanguagesResponseDto>('/available/languages', {
     ...requestConfig?.config
   });
-};

@@ -1,5 +1,4 @@
-import { ApiNewsResponseDto, RequestConfig } from '@/@types/api';
-import axios from 'axios';
+import { api } from '../instance';
 
 type GetLatestNewsParams = {
   language?: string;
@@ -9,9 +8,8 @@ type GetLatestNewsParams = {
 
 type GetLatestNews = RequestConfig<GetLatestNewsParams>;
 
-export const getLatestNews = (requestConfig?: GetLatestNews) => {
-  return axios.get<ApiNewsResponseDto>('/lates-news', {
+export const getLatestNews = async (requestConfig?: GetLatestNews) =>
+  api.get<ApiNewsResponseDto>('/lates-news', {
     ...requestConfig?.config,
-    params: { ...requestConfig?.config?.params, ...requestConfig?.params }
+    params: { ...requestConfig?.params }
   });
-};

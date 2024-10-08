@@ -9,7 +9,7 @@ const geistSans = localFont({
 // export const getServerSideProps = (async () => {
 //   const response = await getCategories();
 //   const { categories } = response.data;
-
+// dbcskjncknd
 //   return { props: { categories } };
 // }) satisfies GetServerSideProps<{ categories: CategoryDto[] }>;
 

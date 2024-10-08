@@ -4,14 +4,17 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 import { Button, Input } from '@/components/ui';
+import { useCategoryQuery } from '@/utils/api/hooks';
 import { ROUTES } from '@/utils/constants/routerPaths';
 import { useOnClickOutside } from '@/utils/hooks';
 
-export function Header({ categories }: { categories: CategoryDto[] }) {
+export function Header() {
   const router = useRouter();
   const inputRef = React.useRef<HTMLInputElement>(null);
   const menuRef = React.useRef<HTMLDivElement>(null);
   const [open, setOpen] = React.useState(false);
+  const { data } = useCategoryQuery();
+
   const closeModal = () => {
     setOpen(false);
   };
@@ -38,7 +41,6 @@ export function Header({ categories }: { categories: CategoryDto[] }) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const search = formData.get('search') as string;
-
     router.push({ pathname: ROUTES.SEARCH, query: { search } }).catch(() => {});
   };
 
@@ -93,7 +95,7 @@ export function Header({ categories }: { categories: CategoryDto[] }) {
               </div>
 
               <ul className='flex w-full flex-col'>
-                {categories?.map((category) => (
+                {data?.data.categories.map((category) => (
                   <li key={category}>
                     <Button variant='list'>
                       <Link
@@ -117,7 +119,7 @@ export function Header({ categories }: { categories: CategoryDto[] }) {
       </div>
       <nav className='hidden items-center justify-center border-b border-gray-200 lg:flex'>
         <ul className='flex items-center'>
-          {categories?.slice(0, 9).map((category) => (
+          {data?.data.categories?.slice(0, 9).map((category) => (
             <li key={category}>
               <Button variant='category'>
                 <Link href={{ pathname: ROUTES.CATEGORY, query: { category } }}>{category}</Link>

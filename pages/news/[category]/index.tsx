@@ -1,6 +1,5 @@
 import type { GetServerSideProps, GetStaticPaths, InferGetStaticPropsType } from 'next/types';
 
-import { RootLayout } from '@/components/layouts';
 import { getCategories, getSearch } from '@/utils/api/requests';
 
 export const getStaticPaths = (async () => {
@@ -14,23 +13,19 @@ export const getStaticPaths = (async () => {
 
 export const getStaticProps = (async ({ params }) => {
   const { category } = params as { category: string };
-  const categoriesResponse = await getCategories();
   const searchResponse = await getSearch({ params: { language: 'en', category } });
 
   return {
-    props: { news: searchResponse.data.news, categories: categoriesResponse.data.categories }
+    props: { news: searchResponse.data.news }
   };
-}) satisfies GetServerSideProps<{ news: NewsDto[]; categories: CategoryDto[] }>;
+}) satisfies GetServerSideProps<{ news: NewsDto[] }>;
 
-export default function Category({
-  news,
-  categories
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Category({ news }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <RootLayout categories={categories}>
+    <>
       {news.map((article) => (
         <div key={article.id}>{article.title}</div>
       ))}
-    </RootLayout>
+    </>
   );
 }

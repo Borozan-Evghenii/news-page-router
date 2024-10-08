@@ -1,19 +1,11 @@
 import React from 'react';
 
-import type { CategoryDto } from '@/@types/api';
+import { Header } from './components/header/Header';
 
-import { Header } from './components/Header';
-
-export function RootLayout({
-  children,
-  categories
-}: {
-  children: React.ReactNode;
-  categories: CategoryDto[];
-}) {
+export function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Header categories={categories} />
+      <Header />
       <div className='container mx-auto my-0 h-[200vh] px-5'>{children}</div>
     </>
   );
